@@ -2,9 +2,11 @@
   "name": "node-network-interfaces",
   "version": "0.1.0",
   "description": "A Node wrapper for JoeKuan/Network-Interfaces-Script",
-  "main": "index.js",
+  "main": "network-interfaces.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha /test/script-runner.spec.js",
+    "compile": "babel --presets es2015 -d dist/ src/",
+    "prepublish": "npm run compile"
   },
   "repository": {
     "type": "git",
@@ -19,9 +21,10 @@
   "devDependencies": {
     "babel-cli": "^6.6.5",
     "babel-core": "^6.6.5",
-    "babel-preset-es2015": "^6.6.0"
+    "babel-preset-es2015": "^6.6.0",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.2.0",
+    "mocha": "^2.4.5"
   },
-  "dependencies": {
-    "awk": "^1.0.0"
-  }
+  "dependencies": {}
 }

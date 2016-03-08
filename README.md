@@ -1,19 +1,39 @@
-# Network-Interfaces-Script
+# node-network-interfaces
+This is a node Wrapper around [Network-Interface-Script][https://github.com/JoeKuan/Network-Interfaces-Script] written by Joe Kuan.
+Allows you to read and update the contents of your ```/etc/network/interfaces``` file.
 
-Read and update awk scripts for Ubuntu /etc/network/interfaces file.
+## Concerns
+This library is obviously only usable on systems that manage their network stack using ```/etc/network/interfaces``` although you can
+point the library at any file that has the same format.
 
-**readInterfaces.awk** -- parse and output interface configuration  
-**changeInterface.awk** -- modify interfaces file
+More importantly - it depends on passwordless sudo for write access to the ```/etc/network/interfaces``` file.  You will have to do the necessary work to enable this in your environment.
 
-## Parse Interfaces Script
+Finally, it depends on access to the ```tee``` command.
 
-_awk -f readInterfaces.awk &lt;interfaces file&gt; &lt;device=ethX&gt;_
+## Usage
+```javascript
+ const NetworkInterfaces = require('network-interfaces');
 
-For usage sample and more information, see [this blog][1].
+ const interfaces = new NetworkInterfaces('/absolute/path/to/my/interfaces/file');
 
-## Update Interfaces Script
+ // Read the config for a given interface
+ interfaces.currentConfig('eth0').then((interfaceConfig) => {
+ 	console.log(`Interface config was: ${interfaceConfig}`);
+ }).catch((readError) => {
+ 	console.log(`Error reading config: ${readError}`);
+ });
 
-_awf -f changeInterface.awk &lt;interfaces file&gt; &lt;device=ethX&gt; &lt;name=value&gt;_
+ // Write to the config for a given interface
+ interfaces.setConfig('eth0', {
+ 	address: '192.168.2.12',
+ 	netmask: '255.255.255.0',
+ 	gateway: '192.168.2.1'
+ }).then((newConfig) => {
+ 	console.log(`Config for eth0 is now ${newConfig}`);
+ }).catch((configUpdateError) => {
+ 	console.log(`Failed to write config for eth0: ${configUpdateError}`);
+ })
+```
 
 For usage sample and more information, see [this blog][2].
 For updating DNS entry, see [this blog][3].
