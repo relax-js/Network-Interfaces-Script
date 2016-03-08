@@ -1,5 +1,5 @@
 # node-network-interfaces
-This is a node Wrapper around [Network-Interface-Script][https://github.com/JoeKuan/Network-Interfaces-Script] written by Joe Kuan.
+This is a node Wrapper around [Network-Interface-Script](https://github.com/JoeKuan/Network-Interfaces-Script) written by Joe Kuan.
 Allows you to read and update the contents of your ```/etc/network/interfaces``` file.
 
 ## Concerns
@@ -12,7 +12,7 @@ Finally, it depends on access to the ```tee``` command.
 
 ## Usage
 ```javascript
- const NetworkInterfaces = require('network-interfaces');
+ const NetworkInterfaces = require('node-network-interfaces');
 
  const interfaces = new NetworkInterfaces('/absolute/path/to/my/interfaces/file');
 
