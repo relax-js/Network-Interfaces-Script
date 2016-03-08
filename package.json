@@ -1,8 +1,8 @@
 {
   "name": "node-network-interfaces",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Node wrapper for JoeKuan/Network-Interfaces-Script",
-  "main": "network-interfaces.js",
+  "main": "dist/network-interfaces.js",
   "scripts": {
     "test": "mocha /test/script-runner.spec.js",
     "compile": "babel --presets es2015 -d dist/ src/",
