@@ -76,6 +76,22 @@ describe('Scriptrunner', () => {
     const expectedNetmask = '255.255.0.0';
     const expectedGateway = '192.168.12.1';
 
+    it('should return the written info in the promise resolve', (done) => {
+      scriptRunner.read(testInterfacePath, 'eth0')
+        .then((interfaceInfo) => {
+          scriptRunner.write(testInterfacePath, 'eth0', {
+            gateway: expectedGateway,
+            netmask: expectedNetmask,
+            address: expectedAddress
+          }).then((written) => {
+            written.address.should.equal(expectedAddress);
+            written.netmask.should.equal(expectedNetmask);
+            written.gateway.should.equal(expectedGateway);
+            done();
+          });
+        });
+    });
+
     it('should be able to write all fields to a dhcp interface', (done) => {
       scriptRunner.read(testInterfacePath, 'eth3')
         .then((interfaceInfo) => {

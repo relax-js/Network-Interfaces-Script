@@ -89,7 +89,7 @@ const write = function write (interfacesFilePath, interfaceName, args) {
     runScript(WRITE_SCRIPT_PATH, formattedArgs)
       .then((newText) => {
         writeToFile(interfacesFilePath, newText).then((success) => {
-          resolve(success);
+          resolve(args);
         })
         .catch((fileWriteError) => {
           reject(fileWriteError);
