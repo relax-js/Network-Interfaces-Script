@@ -13,7 +13,7 @@ const ADDRESS_RETURN_ORDER = ['address', 'netmask', 'gateway'];
 const convertArgsForScript = function convertArgsForScript (interfacesFilePath, args) {
   const converted = [interfacesFilePath];
 
-  // The script requires that device be specified as 
+  // The script requires that device be specified as
   // "dev=<deviceName>" if changing the interface
   converted.push(`dev=${args.device}`);
   delete args.device;
@@ -42,7 +42,7 @@ const formatResult = function formatResult (textResult) {
 
 const writeToFile = function writeToFile(filePath, content) {
   return new Promise((resolve, reject) => {
-    exec(`echo "${content}" | sudo tee  ${filePath} > /dev/null`, (error, stdout, stderr) => {
+    exec(`echo "${content}" | tee  ${filePath} > /dev/null`, (error, stdout, stderr) => {
       if (error) {
         reject(error);
       } else {
@@ -75,7 +75,6 @@ const read = function read (interfacesFilePath, interfaceName) {
         reject(error);
       })
   });
-  
 };
 
 const write = function write (interfacesFilePath, interfaceName, args) {

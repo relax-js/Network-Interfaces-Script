@@ -1,5 +1,5 @@
 {
-  "name": "node-network-interfaces",
+  "name": "@relax-js/node-network-interfaces",
   "version": "0.1.3",
   "description": "A Node wrapper for JoeKuan/Network-Interfaces-Script",
   "main": "dist/network-interfaces.js",
